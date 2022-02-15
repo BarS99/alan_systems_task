@@ -1,0 +1,12 @@
+.container {
+  max-width: 1200px;
+}
+
+.media__text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/*# sourceMappingURL=App.css.map */
