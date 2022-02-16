@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Spinner, Alert, Button } from "react-bootstrap";
 import { API } from "../../static/API";
 import Media from "../components/Media";
-import { eventListState } from "../abstract/EventContext";
+import { eventListState, eventPaginationState } from "../abstract/EventContext";
 import { useRecoilState } from "recoil";
 
 const Index = () => {
-  const [movies, setMovies] = useRecoilState(eventListState);
-  const [isLoading, setIsLoading] = useState(true);
-  const [pagination, setPagination] = useState(1);
+  const [events, setEvents] = useRecoilState(eventListState);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pagination, setPagination] = useRecoilState(eventPaginationState);
 
   const incrementPagination = (e) => {
     e.preventDefault();
@@ -19,13 +19,16 @@ const Index = () => {
   };
 
   useEffect(() => {
-    const fetchMovies = async () => {
+    const abortC = new AbortController();
+
+    const fetchEvents = async () => {
       try {
         setIsLoading(() => {
           return true;
         });
         const response = await fetch(
-          `${API.url}/event?page=${pagination}&limit=8`
+          `${API.url}/event?page=${pagination}&limit=8`,
+          { signal: abortC.signal }
         );
 
         if (response.ok) {
@@ -37,10 +40,11 @@ const Index = () => {
             });
           }
 
-          setMovies((prev) => {
+          setEvents((prev) => {
             return [...prev, ...data];
           });
         } else {
+          throw new Error("Failed to fetch the data!");
         }
       } catch {
       } finally {
@@ -51,18 +55,22 @@ const Index = () => {
     };
 
     if (pagination !== false) {
-      fetchMovies();
+      fetchEvents();
     }
-  }, [pagination]);
+
+    return () => {
+      abortC.abort();
+    };
+  }, [pagination, setEvents, setPagination]);
 
   return (
     <div className="my-4">
       <Container>
         <section>
-          <h1 className="h2 fw-bold mb-4">Movie list</h1>
-          {movies.length > 0 && (
+          <h1 className="h2 fw-bold mb-4">Event list</h1>
+          {events.length > 0 && (
             <Row>
-              {movies.map((item) => {
+              {events.map((item) => {
                 return (
                   <Col xs={6} sm={4} md={3} className="mb-4" key={item.id}>
                     <Media item={item} />
@@ -85,8 +93,8 @@ const Index = () => {
               </Spinner>
             </div>
           )}
-          {!isLoading && movies.length === 0 && (
-            <Alert variant="danger my-4">The movie list is empty!</Alert>
+          {!isLoading && events.length === 0 && (
+            <Alert variant="danger my-4">The event list is empty!</Alert>
           )}
         </section>
       </Container>
