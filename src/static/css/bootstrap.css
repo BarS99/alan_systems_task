@@ -39,6 +39,10 @@
   );
 }
 
+.bg-black {
+  background-color: #000;
+}
+
 *,
 *::before,
 *::after {
