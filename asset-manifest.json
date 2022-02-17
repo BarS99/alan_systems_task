@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/alan_systems_task/static/css/main.7819488c.css",
+    "main.js": "/alan_systems_task/static/js/main.86dbd1bc.js",
+    "static/js/787.d957fbd9.chunk.js": "/alan_systems_task/static/js/787.d957fbd9.chunk.js",
+    "static/media/glyphicons-halflings-regular.svg": "/alan_systems_task/static/media/glyphicons-halflings-regular.060b2710bdbbe3dfe48b.svg",
+    "static/media/glyphicons-halflings-regular.ttf": "/alan_systems_task/static/media/glyphicons-halflings-regular.4692b9ec53fd5972caa2.ttf",
+    "static/media/glyphicons-halflings-regular.woff": "/alan_systems_task/static/media/glyphicons-halflings-regular.82b1212e45a2bc35dd73.woff",
+    "static/media/glyphicons-halflings-regular.eot": "/alan_systems_task/static/media/glyphicons-halflings-regular.5be1347c682810f199c7.eot",
+    "static/media/glyphicons-halflings-regular.woff2": "/alan_systems_task/static/media/glyphicons-halflings-regular.be810be3a3e14c682a25.woff2",
+    "index.html": "/alan_systems_task/index.html",
+    "main.7819488c.css.map": "/alan_systems_task/static/css/main.7819488c.css.map",
+    "main.86dbd1bc.js.map": "/alan_systems_task/static/js/main.86dbd1bc.js.map",
+    "787.d957fbd9.chunk.js.map": "/alan_systems_task/static/js/787.d957fbd9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7819488c.css",
+    "static/js/main.86dbd1bc.js"
+  ]
+}
