@@ -5,4 +5,9 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  img {
+    aspect-ratio: 500 / 500;
+    object-fit: cover;
+  }
 }

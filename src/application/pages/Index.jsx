@@ -1,22 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Spinner, Alert, Button } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Alert } from "react-bootstrap";
 import { API } from "../../static/API";
 import Media from "../components/Media";
-import { eventListState, eventPaginationState } from "../abstract/EventContext";
+import { eventListState } from "../abstract/EventContext";
 import { useRecoilState } from "recoil";
 
 const Index = () => {
   const [events, setEvents] = useRecoilState(eventListState);
   const [isLoading, setIsLoading] = useState(false);
-  const [pagination, setPagination] = useRecoilState(eventPaginationState);
-
-  const incrementPagination = (e) => {
-    e.preventDefault();
-
-    setPagination((prev) => {
-      return prev + 1;
-    });
-  };
 
   useEffect(() => {
     const abortC = new AbortController();
@@ -26,19 +17,12 @@ const Index = () => {
         setIsLoading(() => {
           return true;
         });
-        const response = await fetch(
-          `${API.url}/event?page=${pagination}&limit=8`,
-          { signal: abortC.signal }
-        );
+        const response = await fetch(`${API.url}/event`, {
+          signal: abortC.signal,
+        });
 
         if (response.ok) {
           const data = await response.json();
-
-          if (data.length === 0) {
-            setPagination(() => {
-              return false;
-            });
-          }
 
           setEvents((prev) => {
             return [...prev, ...data];
@@ -54,14 +38,14 @@ const Index = () => {
       }
     };
 
-    if (pagination !== false) {
+    if (events.length === 0) {
       fetchEvents();
     }
 
     return () => {
       abortC.abort();
     };
-  }, [pagination, setEvents, setPagination]);
+  }, [setEvents, events]);
 
   return (
     <div className="my-4">
@@ -72,18 +56,17 @@ const Index = () => {
             <Row>
               {events.map((item) => {
                 return (
-                  <Col xs={6} sm={4} md={3} className="mb-4" key={item.id}>
+                  <Col
+                    xs={6}
+                    sm={4}
+                    md={3}
+                    className="mb-4 d-flex"
+                    key={item.id}
+                  >
                     <Media item={item} />
                   </Col>
                 );
               })}
-              {isLoading === false && pagination !== false && (
-                <div className="text-center mt-4">
-                  <Button variant="dark" onClick={incrementPagination}>
-                    Load more
-                  </Button>
-                </div>
-              )}
             </Row>
           )}
           {isLoading && (

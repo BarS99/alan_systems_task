@@ -5,7 +5,7 @@ export const eventListState = atom({
   default: [],
 });
 
-export const eventPaginationState = atom({
-  key: "eventPaginationState",
-  default: 1,
+export const categoryListState = atom({
+  key: "categoryListState",
+  default: [],
 });

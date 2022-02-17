@@ -8,5 +8,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.media img {
+  aspect-ratio: 500/500;
+  object-fit: cover;
+}
 
 /*# sourceMappingURL=App.css.map */

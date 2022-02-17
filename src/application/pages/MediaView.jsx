@@ -18,6 +18,7 @@ import {
   faEarth,
 } from "@fortawesome/free-solid-svg-icons";
 import { timestampToDate, timestampToIsoDate } from "../../static/js/utilities";
+import CategoryBadge from "../components/CategoryBadge";
 
 const MediaView = () => {
   const navigate = useNavigate();
@@ -63,10 +64,11 @@ const MediaView = () => {
               <Image src={media.image_path} fluid className="mb-3 mb-sm-0" />
             </Col>
             <Col xs={12} sm={6} md={8}>
-              <h1 className="h1 fw-bold text-success">{media.title}</h1>
+              <h1 className="h1 fw-bold text-success mb-4">{media.title}</h1>
+              <CategoryBadge id={media.category_id} />
               <time
                 dateTime={timestampToIsoDate(media.date)}
-                className="d-block mt-4"
+                className="d-block mt-2"
               >
                 <FontAwesomeIcon icon={faCalendar} className="me-2" />
                 Date: {timestampToDate(media.date)}
