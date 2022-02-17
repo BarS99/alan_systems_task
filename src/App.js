@@ -4,6 +4,7 @@ import LayoutBasic from "./application/layouts/LayoutBasic";
 import Index from "./application/pages/Index";
 import Upload from "./application/pages/Upload";
 import MediaView from "./application/pages/MediaView";
+import Page404 from "./application/pages/Page404";
 import { useRecoilState } from "recoil";
 import { categoryListState } from "./application/abstract/EventContext";
 import { API } from "./static/API";
@@ -48,6 +49,7 @@ function App() {
           <Route path="" element={<Index />} />
           <Route path="/upload" element={<Upload />} />
           <Route path="/media-view/:id" element={<MediaView />} />
+          <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
     </div>
