@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "./static/css/bootstrap.css";
 import "./static/css/App.css";
 import { RecoilRoot } from "recoil";
 

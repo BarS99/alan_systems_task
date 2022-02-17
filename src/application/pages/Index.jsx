@@ -58,8 +58,8 @@ const Index = () => {
                 return (
                   <Col
                     xs={6}
-                    sm={4}
-                    md={3}
+                    md={4}
+                    lg={3}
                     className="mb-4 d-flex"
                     key={item.id}
                   >
