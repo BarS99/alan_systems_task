@@ -2,6 +2,10 @@
   max-width: 1200px;
 }
 
+.bg-black {
+  background-color: #000;
+}
+
 .media__text {
   display: -webkit-box;
   -webkit-line-clamp: 4;
